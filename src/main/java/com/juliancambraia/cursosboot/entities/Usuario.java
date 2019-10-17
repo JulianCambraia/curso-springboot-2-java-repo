@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -23,6 +26,9 @@ public class Usuario implements Serializable {
     private String telefone;
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "cliente", orphanRemoval = false)
+    List<Pedido> pedidos = new ArrayList<>();
 
     public Usuario() {
     }
@@ -73,6 +79,10 @@ public class Usuario implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
     @Override
