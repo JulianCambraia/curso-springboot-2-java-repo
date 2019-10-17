@@ -1,14 +1,27 @@
 package com.juliancambraia.cursosboot.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "nome")
     private String nome;
+    @Column(name = "email")
     private String email;
+    @Column(name = "telefone")
     private String telefone;
+    @Column(name = "password")
     private String password;
 
     public Usuario() {
