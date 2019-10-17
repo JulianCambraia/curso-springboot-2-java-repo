@@ -1,5 +1,7 @@
 package com.juliancambraia.cursosboot.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +29,7 @@ public class Usuario implements Serializable {
     @Column(name = "password")
     private String password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente", orphanRemoval = false)
     List<Pedido> pedidos = new ArrayList<>();
 
