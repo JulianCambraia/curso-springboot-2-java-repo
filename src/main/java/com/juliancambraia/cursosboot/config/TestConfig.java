@@ -2,10 +2,12 @@ package com.juliancambraia.cursosboot.config;
 
 import com.juliancambraia.cursosboot.entities.Categoria;
 import com.juliancambraia.cursosboot.entities.Pedido;
+import com.juliancambraia.cursosboot.entities.Produto;
 import com.juliancambraia.cursosboot.entities.Usuario;
 import com.juliancambraia.cursosboot.entities.enums.PedidoStatusEnum;
 import com.juliancambraia.cursosboot.repositories.CategoriaRepository;
 import com.juliancambraia.cursosboot.repositories.PedidoRepository;
+import com.juliancambraia.cursosboot.repositories.ProdutoRepository;
 import com.juliancambraia.cursosboot.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -46,6 +51,12 @@ public class TestConfig implements CommandLineRunner {
         Pedido p3 = new Pedido(null, Instant.parse("2019-07-22T15:21:22Z"), u1, PedidoStatusEnum.AGUARDANDO_PAGAMENTO);
         pedidoRepository.saveAll(Arrays.asList(p1, p2, p3));
 
+        Produto pr1 = new Produto("The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Produto pr2 = new Produto("Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Produto pr3 = new Produto("Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Produto pr4 = new Produto("PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Produto pr5 = new Produto("Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+        produtoRepository.saveAll(Arrays.asList(pr1, pr2, pr3, pr4, pr5));
 
     }
 }
