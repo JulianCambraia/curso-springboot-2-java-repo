@@ -1,6 +1,7 @@
 package com.juliancambraia.cursosboot.config;
 
 import com.juliancambraia.cursosboot.entities.Categoria;
+import com.juliancambraia.cursosboot.entities.Pagamento;
 import com.juliancambraia.cursosboot.entities.Pedido;
 import com.juliancambraia.cursosboot.entities.PedidoItem;
 import com.juliancambraia.cursosboot.entities.Produto;
@@ -76,6 +77,10 @@ public class TestConfig implements CommandLineRunner {
         PedidoItem pi4 = new PedidoItem(p3, pr5, 2, pr5.getPreco());
 
         pedidoItemRepository.saveAll(Arrays.asList(pi1, pi2, pi3, pi4));
+
+        Pagamento pag1 = new Pagamento(Instant.parse("2019-06-20T21:53:07Z"), p1);
+        p1.setPagamento(pag1);
+        pedidoRepository.save(p1);
 
     }
 }
