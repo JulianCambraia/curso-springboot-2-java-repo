@@ -1,8 +1,11 @@
 package com.juliancambraia.cursosboot.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.juliancambraia.cursosboot.entities.enums.PedidoStatusEnum;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,13 +30,16 @@ public class Pedido implements Serializable {
     @JoinColumn(name = "cliente_id")
     private Usuario cliente;
 
+    private Integer status;
+
     public Pedido() {
     }
 
-    public Pedido(Long id, Instant moment, Usuario cliente) {
+    public Pedido(Long id, Instant moment, Usuario cliente, PedidoStatusEnum status) {
         this.id = id;
         this.moment = moment;
         this.cliente = cliente;
+        setStatus(status);
     }
 
     public Long getId() {
@@ -58,6 +64,16 @@ public class Pedido implements Serializable {
 
     public void setCliente(Usuario cliente) {
         this.cliente = cliente;
+    }
+
+    public PedidoStatusEnum getStatus() {
+        return PedidoStatusEnum.valueOf(status);
+    }
+
+    public void setStatus(PedidoStatusEnum status) {
+        if (status != null) {
+            this.status = status.getCodigo();
+        }
     }
 
     @Override
