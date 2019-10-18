@@ -56,6 +56,13 @@ public class TestConfig implements CommandLineRunner {
         Produto pr3 = new Produto("Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
         Produto pr4 = new Produto("PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
         Produto pr5 = new Produto("Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
+        pr1.getCategorias().add(cat2);
+        pr2.getCategorias().addAll(Arrays.asList(cat1, cat3));
+        pr3.getCategorias().add(cat3);
+        pr4.getCategorias().add(cat3);
+        pr5.getCategorias().add(cat2);
+
         produtoRepository.saveAll(Arrays.asList(pr1, pr2, pr3, pr4, pr5));
 
     }
