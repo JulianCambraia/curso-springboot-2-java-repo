@@ -2,10 +2,12 @@ package com.juliancambraia.cursosboot.config;
 
 import com.juliancambraia.cursosboot.entities.Categoria;
 import com.juliancambraia.cursosboot.entities.Pedido;
+import com.juliancambraia.cursosboot.entities.PedidoItem;
 import com.juliancambraia.cursosboot.entities.Produto;
 import com.juliancambraia.cursosboot.entities.Usuario;
 import com.juliancambraia.cursosboot.entities.enums.PedidoStatusEnum;
 import com.juliancambraia.cursosboot.repositories.CategoriaRepository;
+import com.juliancambraia.cursosboot.repositories.PedidoItemRepository;
 import com.juliancambraia.cursosboot.repositories.PedidoRepository;
 import com.juliancambraia.cursosboot.repositories.ProdutoRepository;
 import com.juliancambraia.cursosboot.repositories.UsuarioRepository;
@@ -32,6 +34,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private PedidoItemRepository pedidoItemRepository;
 
 
     @Override
@@ -64,6 +69,13 @@ public class TestConfig implements CommandLineRunner {
         pr5.getCategorias().add(cat2);
 
         produtoRepository.saveAll(Arrays.asList(pr1, pr2, pr3, pr4, pr5));
+
+        PedidoItem pi1 = new PedidoItem(p1, pr1, 2, pr1.getPreco());
+        PedidoItem pi2 = new PedidoItem(p1, pr3, 1, pr3.getPreco());
+        PedidoItem pi3 = new PedidoItem(p2, pr3, 2, pr3.getPreco());
+        PedidoItem pi4 = new PedidoItem(p3, pr5, 2, pr5.getPreco());
+
+        pedidoItemRepository.saveAll(Arrays.asList(pi1, pi2, pi3, pi4));
 
     }
 }

@@ -11,9 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Pedido implements Serializable {
@@ -31,6 +34,9 @@ public class Pedido implements Serializable {
     private Usuario cliente;
 
     private Integer status;
+
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<PedidoItem> pedidoItems = new HashSet<>();
 
     public Pedido() {
     }
@@ -74,6 +80,10 @@ public class Pedido implements Serializable {
         if (status != null) {
             this.status = status.getCodigo();
         }
+    }
+
+    public Set<PedidoItem> getPedidoItems() {
+        return pedidoItems;
     }
 
     @Override

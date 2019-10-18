@@ -13,7 +13,7 @@ import java.util.Objects;
 public class PedidoItemPk implements Serializable {
 
     private static final double serialVersionUID = 1L;
-    
+
     @ManyToOne
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;

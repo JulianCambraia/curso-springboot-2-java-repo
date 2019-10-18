@@ -1,5 +1,6 @@
 package com.juliancambraia.cursosboot.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.juliancambraia.cursosboot.entities.pk.PedidoItemPk;
 
 import javax.persistence.EmbeddedId;
@@ -12,7 +13,7 @@ public class PedidoItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private PedidoItemPk id;
+    private PedidoItemPk id = new PedidoItemPk();
 
     private Integer quantidade;
 
@@ -28,6 +29,7 @@ public class PedidoItem implements Serializable {
         this.id.setProduto(produto);
     }
 
+    @JsonIgnore
     public Pedido getPedido() {
         return id.getPedido();
     }
@@ -43,7 +45,7 @@ public class PedidoItem implements Serializable {
     public void setProduto(Produto produto) {
         id.setProduto(produto);
     }
-    
+
     public Integer getQuantidade() {
         return quantidade;
     }
