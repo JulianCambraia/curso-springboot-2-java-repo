@@ -1,8 +1,10 @@
 package com.juliancambraia.cursosboot.config;
 
+import com.juliancambraia.cursosboot.entities.Categoria;
 import com.juliancambraia.cursosboot.entities.Pedido;
 import com.juliancambraia.cursosboot.entities.Usuario;
 import com.juliancambraia.cursosboot.entities.enums.PedidoStatusEnum;
+import com.juliancambraia.cursosboot.repositories.CategoriaRepository;
 import com.juliancambraia.cursosboot.repositories.PedidoRepository;
 import com.juliancambraia.cursosboot.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,17 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private PedidoRepository pedidoRepository;
 
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
+        Categoria cat1 = new Categoria(null, "Electronics");
+        Categoria cat2 = new Categoria(null, "Books");
+        Categoria cat3 = new Categoria(null, "Computers");
+        categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+
         // quando a aplicação iniciar tudo que estiver dentro deste meto será executado
         Usuario u1 = new Usuario(null, "Maria", "maria@gmail.com", "99999999", "123456");
         Usuario u2 = new Usuario(null, "Alex Green", "alexgreen@gmail.com", "9977717540", "123456");
@@ -35,6 +45,7 @@ public class TestConfig implements CommandLineRunner {
         Pedido p2 = new Pedido(null, Instant.parse("2019-07-21T03:42:10Z"), u2, PedidoStatusEnum.AGUARDANDO_PAGAMENTO);
         Pedido p3 = new Pedido(null, Instant.parse("2019-07-22T15:21:22Z"), u1, PedidoStatusEnum.AGUARDANDO_PAGAMENTO);
         pedidoRepository.saveAll(Arrays.asList(p1, p2, p3));
+
 
     }
 }
